@@ -2386,6 +2386,7 @@ def add_existing_nodes(self, cluster_id, server_details):
         # 8. 执行Ansible扩容
         if node_names:
             scale_nodes = ",".join([name.split(":")[0] for name in node_names])
+            print("准备扩容的节点: %s", scale_nodes)
             ansible_result = scale_kubernetes(cluster_id, scale_nodes, task_id)
             
             if not ansible_result[0]:
