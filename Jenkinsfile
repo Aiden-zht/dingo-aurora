@@ -1,9 +1,8 @@
 properties([
     parameters([
         choice(name: 'codebranch', description: '代码分支.', choices: ['main','jre_aps_apko','bash_apko','busybox_apko','openjdk-21'], defaultValue: 'main'),
-        
-        extendedChoice(name: 'remote_env',type: 'CHECKBOX',multiSelectDelimiter: ',',defaultValue: 'test-regionone',
-        value: 'test-regionone,test-regiontwo,prod',description: '选择部署环境')
+        extendedChoice(description: '选中多个目标环境进行更新', multiSelectDelimiter: ',', name: 'remote_env', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value:
+  'test-regionone,test-regiontwo,prod', visibleItemCount: 6)
 
     ])
 ])
