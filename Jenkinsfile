@@ -57,8 +57,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'harbor_credential', usernameVariable: 'HARBOR_USERNAME', passwordVariable: 'HARBOR_PASSWORD')]) {
                     sh 'podman login harbor.zetyun.cn -u $HARBOR_USERNAME -p $HARBOR_PASSWORD'
                 }
-                echo "podman build -t harbor.zetyun.cn/dingostack/dingo-command:${IMAGE_TAG} -f docker/Dockerfile-local ." 
-                echo "Tagging dingo-command image as harbor.zetyun.cn/dingostack/dingo-command:${IMAGE_TAG}"
+                echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️podman build -t harbor.zetyun.cn/dingostack/dingo-command:${IMAGE_TAG} -f docker/Dockerfile-local ." 
+                echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️Tagging dingo-command image as harbor.zetyun.cn/dingostack/dingo-command:${IMAGE_TAG}"
                 // retry(3) {
                 //     sh 'podman push harbor.zetyun.cn/dingostack/dingo-command:${IMAGE_TAG}'
                 // }
@@ -107,8 +107,9 @@ pipeline {
                             // 添加实际部署逻辑
                             
                         
-                        echo "pull dingo-command images to ${env}"
+                        echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️pull dingo-command images to ${env}"
                         dir('/home/cicd/kolla-ansible/tools') {
+                            
                             // sh 'ansible-playbook  -e @/home/cicd/envs/${env}/globals.yml -e @/home/cicd/envs/${env}/passwords.yml  --tags dingo-command -e openstack_tag=${IMAGE_TAG} -e kolla_action=pull ../ansible/site.yml  --inventory /home/cicd/envs/${env}/multinode -e CONFIG_DIR=/home/cicd/envs/${env} -e docker_namespace=openstack -e docker_registry=harbor.zetyun.cn'
                             // echo 'deploy images to develop '
                             // sh 'ansible-playbook  -e @/home/cicd/envs/${env}/globals.yml -e @/home/cicd/envs/${env}/passwords.yml  --tags dingo-command -e openstack_tag=${IMAGE_TAG} -e kolla_action=upgrade ../ansible/site.yml  --inventory /home/cicd/envs/${env}/multinode -e CONFIG_DIR=/home/cicd/envs/${env} -e docker_namespace=openstack -e docker_registry=harbor.zetyun.cn'
